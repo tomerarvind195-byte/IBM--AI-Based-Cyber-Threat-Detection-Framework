@@ -1,0 +1,16 @@
+# Large generated files
+outputs/train_processed.csv
+outputs/test_processed.csv
+
+# Model outputs
+outputs/*.pkl
+outputs/*.csv
+outputs/*.png
+
+models/*.pkl
+results/*.png
+results/*.csv
+
+__pycache__/
+*.pyc
+.venv/
