@@ -99,15 +99,17 @@ The best-performing model is wrapped into a `detect_threat()` function that take
 
 ## 🖥️ Dashboard Preview
 
-**Dashboard Home**
-![Dashboard Home](<img width="1763" height="844" alt="image" src="https://github.com/user-attachments/assets/6b99ec54-982a-46b0-b321-6924b6f1df16" />
-)
+### Dashboard Home
 
-**Live Detection in Action**
-![Live Detection](<img width="1763" height="844" alt="image" src="https://github.com/user-attachments/assets/cb8be580-96c1-4bc1-b77c-0706ef01622f" />
-)
+<img width="1763" height="844" alt="Dashboard Home" src="https://github.com/user-attachments/assets/6b99ec54-982a-46b0-b321-6924b6f1df16" />
 
-The dashboard shows live traffic classification (Normal/Attack), confidence scores, severity levels, a traffic distribution pie chart, an attack severity bar chart, and a detailed detection log table — simulating a real Security Operations Center (SOC) monitoring view.
+### Live Detection in Action
+
+<img width="1763" height="844" alt="Live Detection" src="https://github.com/user-attachments/assets/cb8be580-96c1-4bc1-b77c-0706ef01622f" />
+
+The dashboard provides a real-time visualization of network traffic by classifying packets as **Normal** or **Attack**. It displays confidence scores, threat severity levels, traffic distribution through interactive charts, and a live detection log, simulating a Security Operations Center (SOC) monitoring dashboard.
+
+---
 
 ---
 
