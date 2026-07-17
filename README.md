@@ -100,7 +100,8 @@ The best-performing model is wrapped into a `detect_threat()` function that take
 ## 🖥️ Dashboard Preview
 
 **Dashboard Home**
-![Dashboard Home](assets/dashboard_home.png)
+![Dashboard Home](<img width="1763" height="844" alt="image" src="https://github.com/user-attachments/assets/6b99ec54-982a-46b0-b321-6924b6f1df16" />
+)
 
 **Live Detection in Action**
 ![Live Detection](assets/dashboard_live.png)
