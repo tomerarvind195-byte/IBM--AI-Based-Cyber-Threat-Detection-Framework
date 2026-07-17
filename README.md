@@ -133,4 +133,8 @@ streamlit run scripts/dashboard.py
 
 ## 👤 Author
 
+**Arvind Kumar**
+- GitHub: [@tomerarvind195-byte](https://github.com/tomerarvind195-byte)
+- LinkedIn: *[add your LinkedIn URL here]*
+
 Internship Project — IBM
