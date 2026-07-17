@@ -97,6 +97,18 @@ The best-performing model is wrapped into a `detect_threat()` function that take
 
 ---
 
+## 🖥️ Dashboard Preview
+
+**Dashboard Home**
+![Dashboard Home](assets/dashboard_home.png)
+
+**Live Detection in Action**
+![Live Detection](assets/dashboard_live.png)
+
+The dashboard shows live traffic classification (Normal/Attack), confidence scores, severity levels, a traffic distribution pie chart, an attack severity bar chart, and a detailed detection log table — simulating a real Security Operations Center (SOC) monitoring view.
+
+---
+
 ## ▶️ How to Run
 
 ```bash
@@ -134,7 +146,7 @@ streamlit run scripts/dashboard.py
 ## 👤 Author
 
 **Arvind Kumar**
-- GitHub: [@tomerarvind195-byte](https://github.com/tomerarvind195-byte)
+- GitHub: [@tomerarvind195-byte]here(https://github.com/tomerarvind195-byte)
 - LinkedIn: *[[(https://www.linkedin.com/in/arvind-kumar-399a60338/)](https://www.linkedin.com/in/arvind-kumar-399a60338/)]*
 
 Internship Project — IBM
