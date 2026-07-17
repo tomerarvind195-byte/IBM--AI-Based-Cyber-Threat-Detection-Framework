@@ -198,75 +198,12 @@ def detect(raw_record):
             "ATTACK" if pred == 1 else "NORMAL",
 
         "confidence":
-            round(float(prob),4),
+            round(float(prob), 4),
 
         "severity":
-            severity(prob) if pred==1 else "-"
+            severity(prob) if pred == 1 else "-"
     }
 
-# ==========================================================
-# Sidebar
-# ==========================================================
-
-st.sidebar.title("⚙ Dashboard Controls")
-
-n_records = st.sidebar.slider(
-    "Number of Records",
-    min_value=5,
-    max_value=50,
-    value=20,
-    key="records_slider"
-)
-
-delay = st.sidebar.slider(
-    "Delay (seconds)",
-    min_value=0.10,
-    max_value=2.00,
-    value=0.50,
-    step=0.10,
-    key="delay_slider"
-)
-
-start = st.sidebar.button(
-    "▶ Start Simulation",
-    type="primary"
-)
-
-reset = st.sidebar.button("Reset")
-
-st.title("🛡 AI-Based Cyber Threat Detection Framework")
-
-st.markdown(
-"""
-### Live Network Traffic Monitoring
-
-Model : **XGBoost**
-
-Dataset : **NSL-KDD**
-
-Author : **Arvind Kumar**
-"""
-)
-
-if "logs" not in st.session_state or reset:
-    st.session_state.logs = []
-
-metric1,metric2,metric3,metric4 = st.columns(4)
-
-m1 = metric1.empty()
-m2 = metric2.empty()
-m3 = metric3.empty()
-m4 = metric4.empty()
-
-alert_box = st.empty()
-
-chart_col1,chart_col2 = st.columns(2)
-
-pie_chart = chart_col1.empty()
-
-bar_chart = chart_col2.empty()
-
-table = st.empty()
 # ==========================================================
 # Sidebar Controls
 # ==========================================================
@@ -317,8 +254,14 @@ Live Network Traffic Monitoring using **XGBoost**
 if "logs" not in st.session_state:
     st.session_state.logs = []
 
+# Counter used only to build unique widget keys for repeated
+# plotly_chart / dataframe calls inside render_dashboard().
+if "render_count" not in st.session_state:
+    st.session_state.render_count = 0
+
 if reset_btn:
     st.session_state.logs = []
+    st.session_state.render_count = 0
 
 # ==========================================================
 # Dashboard Metrics
@@ -355,6 +298,12 @@ def render_dashboard(logs):
         m_high.metric("High Severity", 0)
 
         return
+
+    # Bump the counter every time we render so each plotly_chart /
+    # dataframe call below gets a fresh, unique key even when the
+    # chart's data/parameters happen to be identical to a previous call.
+    st.session_state.render_count += 1
+    render_id = st.session_state.render_count
 
     df = pd.DataFrame(logs)
 
@@ -406,14 +355,15 @@ Confidence : {latest['Confidence']:.2%}
         title="Traffic Distribution",
         color="Prediction",
         color_discrete_map={
-            "NORMAL":"green",
-            "ATTACK":"red"
+            "NORMAL": "green",
+            "ATTACK": "red"
         }
     )
 
     pie_placeholder.plotly_chart(
         pie,
-        use_container_width=True
+        use_container_width=True,
+        key=f"pie_chart_{render_id}"
     )
 
     # Severity Chart
@@ -428,7 +378,7 @@ Confidence : {latest['Confidence']:.2%}
             title="Attack Severity",
             color="Severity",
             category_orders={
-                "Severity":[
+                "Severity": [
                     "LOW",
                     "MEDIUM",
                     "HIGH"
@@ -438,13 +388,15 @@ Confidence : {latest['Confidence']:.2%}
 
         bar_placeholder.plotly_chart(
             bar,
-            use_container_width=True
+            use_container_width=True,
+            key=f"bar_chart_{render_id}"
         )
 
     table_placeholder.dataframe(
         df.iloc[::-1],
         use_container_width=True,
-        height=350
+        height=350,
+        key=f"log_table_{render_id}"
     )
 
 # ==========================================================
@@ -452,6 +404,7 @@ Confidence : {latest['Confidence']:.2%}
 # ==========================================================
 
 render_dashboard(st.session_state.logs)
+
 # ==========================================================
 # Start Live Detection
 # ==========================================================
@@ -473,7 +426,7 @@ if start_btn:
             labels=["label", "difficulty"]
         ).to_dict()
 
-        result = detect(raw_record)  
+        result = detect(raw_record)
 
         st.session_state.logs.append({
 
