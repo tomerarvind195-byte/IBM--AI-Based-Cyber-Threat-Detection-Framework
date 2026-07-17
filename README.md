@@ -135,6 +135,6 @@ streamlit run scripts/dashboard.py
 
 **Arvind Kumar**
 - GitHub: [@tomerarvind195-byte](https://github.com/tomerarvind195-byte)
-- LinkedIn: *[[add your LinkedIn URL here](https://www.linkedin.com/in/arvind-kumar-399a60338/)]*
+- LinkedIn: *[[(https://www.linkedin.com/in/arvind-kumar-399a60338/)](https://www.linkedin.com/in/arvind-kumar-399a60338/)]*
 
 Internship Project — IBM
