@@ -104,7 +104,8 @@ The best-performing model is wrapped into a `detect_threat()` function that take
 )
 
 **Live Detection in Action**
-![Live Detection](assets/dashboard_live.png)
+![Live Detection](<img width="1763" height="844" alt="image" src="https://github.com/user-attachments/assets/cb8be580-96c1-4bc1-b77c-0706ef01622f" />
+)
 
 The dashboard shows live traffic classification (Normal/Attack), confidence scores, severity levels, a traffic distribution pie chart, an attack severity bar chart, and a detailed detection log table — simulating a real Security Operations Center (SOC) monitoring view.
 
