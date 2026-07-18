@@ -71,6 +71,22 @@ The best-performing model is wrapped into a `detect_threat()` function that take
 
 ---
 
+## 🔍 Explainability (SHAP)
+
+To ensure analyst trust, the model's predictions are explained using **SHAP** 
+(SHapley Additive exPlanations). This identifies which network traffic 
+features (e.g., `src_bytes`, `count`, `serror_rate`, `dst_host_srv_count`) 
+most influenced each prediction — critical for real-world SOC adoption, 
+where black-box alerts are not trusted by analysts.
+
+![SHAP Summary](assets/shap_summary.png)
+
+Each prediction can also be explained individually — the top 3 contributing 
+features are printed for any given network record, helping analysts 
+understand *why* a connection was flagged as an attack.
+
+---
+
 ## 📈 Results
 
 | Model | Accuracy | Precision | Recall | F1-Score | ROC-AUC | False Positive Rate |
@@ -82,6 +98,7 @@ The best-performing model is wrapped into a `detect_threat()` function that take
 **XGBoost** was selected as the final model — highest F1-score and ROC-AUC, with a low false positive rate suitable for real-world intrusion detection.
 
 ---
+
 
 ## 🛠️ Tools & Technologies
 
