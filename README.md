@@ -33,15 +33,20 @@ To design and develop an AI/ML-based framework capable of accurately detecting c
 ---
 
 ## 🗂️ Repository Structure
-
-```
 IBM--AI-Based-Cyber-Threat-Detection-Framework/
-├── data/          # Raw and processed NSL-KDD dataset
-├── models/        # Trained model, scaler, and encoders (.pkl files)
-├── scripts/       # Preprocessing, training, and detection scripts
+├── data/               # Raw NSL-KDD dataset
+├── models/             # Model comparison results, plots
+├── outputs/            # Generated: trained model, scaler, encoders (.pkl)
+├── assets/             # Images used in this README (SHAP plot, etc.)
+├── scripts/
+│   ├── preprocess.py           # Data cleaning, encoding, scaling, SMOTE
+│   ├── train_models.py         # Model training + evaluation
+│   ├── real_time_detection.py  # Real-time detection simulation
+│   ├── explain.py              # SHAP explainability
+│   └── dashboard.py            # Streamlit live monitoring dashboard
 ├── .gitignore
+├── requirements.txt
 └── README.md
-```
 
 ---
 
@@ -71,22 +76,6 @@ The best-performing model is wrapped into a `detect_threat()` function that take
 
 ---
 
-## 🔍 Explainability (SHAP)
-
-To ensure analyst trust, the model's predictions are explained using **SHAP** 
-(SHapley Additive exPlanations). This identifies which network traffic 
-features (e.g., `src_bytes`, `count`, `serror_rate`, `dst_host_srv_count`) 
-most influenced each prediction — critical for real-world SOC adoption, 
-where black-box alerts are not trusted by analysts.
-
-![SHAP Summary](assets/shap_summary.png)
-
-Each prediction can also be explained individually — the top 3 contributing 
-features are printed for any given network record, helping analysts 
-understand *why* a connection was flagged as an attack.
-
----
-
 ## 📈 Results
 
 | Model | Accuracy | Precision | Recall | F1-Score | ROC-AUC | False Positive Rate |
@@ -99,6 +88,15 @@ understand *why* a connection was flagged as an attack.
 
 ---
 
+## 🔍 Explainability (SHAP)
+
+To ensure analyst trust, the model's predictions are explained using **SHAP** (SHapley Additive exPlanations). This identifies which network traffic features (e.g., `src_bytes`, `count`, `serror_rate`, `dst_host_srv_count`) most influenced each prediction — critical for real-world SOC adoption, where black-box alerts are not trusted by analysts.
+
+![SHAP Summary](assets/shap_summary.png)
+
+Each prediction can also be explained individually — the top 3 contributing features are printed for any given network record, helping analysts understand *why* a connection was flagged as an attack.
+
+---
 
 ## 🛠️ Tools & Technologies
 
@@ -108,8 +106,9 @@ understand *why* a connection was flagged as an attack.
 | scikit-learn | Preprocessing, models, evaluation metrics |
 | imbalanced-learn | SMOTE for class imbalance |
 | xgboost | Gradient boosting classifier |
+| shap | Model explainability |
 | joblib | Saving/loading trained model, scaler, encoders |
-| matplotlib, seaborn | Visualizations (confusion matrix, feature importance) |
+| matplotlib, seaborn | Visualizations (confusion matrix, feature importance, SHAP) |
 | streamlit, plotly | Live monitoring dashboard |
 
 ---
@@ -128,8 +127,6 @@ The dashboard provides a real-time visualization of network traffic by classifyi
 
 ---
 
----
-
 ## ▶️ How to Run
 
 ```bash
@@ -138,12 +135,13 @@ git clone https://github.com/tomerarvind195-byte/IBM--AI-Based-Cyber-Threat-Dete
 cd IBM--AI-Based-Cyber-Threat-Detection-Framework
 
 # 2. Install dependencies
-pip install pandas numpy scikit-learn imbalanced-learn xgboost matplotlib seaborn joblib streamlit plotly
+pip install -r requirements.txt
 
 # 3. Run the pipeline in order
 python scripts/preprocess.py
 python scripts/train_models.py
 python scripts/real_time_detection.py
+python scripts/explain.py
 
 # 4. (Optional) Launch the live dashboard
 streamlit run scripts/dashboard.py
@@ -159,7 +157,6 @@ streamlit run scripts/dashboard.py
 - Integration with IBM QRadar (SIEM) and IBM Watson for enterprise deployment
 - Automated response system (e.g., auto-blocking suspicious IPs)
 - Cloud deployment for scalable, multi-location monitoring
-- Explainable AI (SHAP/LIME) for model transparency
 - Continuous learning to adapt to evolving attack patterns
 
 ---
@@ -167,7 +164,7 @@ streamlit run scripts/dashboard.py
 ## 👤 Author
 
 **Arvind Kumar**
-- GitHub: [@tomerarvind195-byte]here(https://github.com/tomerarvind195-byte)
-- LinkedIn: *[[(https://www.linkedin.com/in/arvind-kumar-399a60338/)](https://www.linkedin.com/in/arvind-kumar-399a60338/)]*
+- GitHub: [@tomerarvind195-byte](https://github.com/tomerarvind195-byte)
+- LinkedIn: [arvind-kumar-399a60338](https://www.linkedin.com/in/arvind-kumar-399a60338/)
 
 Internship Project — IBM
