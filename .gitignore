@@ -14,3 +14,8 @@ results/*.csv
 __pycache__/
 *.pyc
 .venv/
+
+test_env/
+.venv/
+__pycache__/
+outputs/
